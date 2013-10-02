@@ -41,18 +41,7 @@ function Game(player1, player2) {
   this.player2 = player2;
 }
 
-// Game.prototype.result = function() {
-//   var p1Wins = this.player1.pick.beats(this.player2.pick);
-//   var p2Wins = this.player2.pick.beats(this.player1.pick);
-
-//   // console.log(p1Wins || p2Wins || 'draw');
-//   if(p1Wins) return p1Wins;
-//   if(p2Wins) return p2Wins;
-  
-//   return 'Draw';
-// }
-
-Game.prototype.winner = function() {
+Game.prototype.result = function() {
   var p1Wins = this.player1.pick.beats(this.player2.pick);
   var p2Wins = this.player2.pick.beats(this.player1.pick);
 
@@ -61,4 +50,13 @@ Game.prototype.winner = function() {
   if(p2Wins) return p2Wins;
   
   return 'Draw';
+}
+
+Game.prototype.winner = function() {
+  var p1Wins = this.player1.pick.beats(this.player2.pick);
+  var p2Wins = this.player2.pick.beats(this.player1.pick);
+
+  // console.log(p1Wins || p2Wins || 'draw');
+  if(p1Wins) return this.player1;
+  if(p2Wins) return this.player2;
 }

@@ -27,13 +27,14 @@
     <h3 id="mychoice"></h3>
     <h3 id="yourchoice"></h3>
     <h3 id="result"></h3>
+    <h3 id="winner"></h3>
 
     <script type="text/javascript" src='http://code.jquery.com/jquery-2.0.3.js'></script>
     <script src='js/RockPaperScissors.js'></script>
     <script>
       $(document).ready(function() {
-        var player1 = new Player();
-        var player2 = new Player();
+        var player1 = new Player('You');
+        var player2 = new Player('Computer');
         var game = new Game(player1, player2);
 
         $(document).ready(function(){
@@ -47,14 +48,15 @@
         });
         $('.choices img').click(function() {
           var randomPick = player2.randomPick();
-          
+
 
           player1.picks($(this).data('name'));
           player2.picks(randomPick);
 
           $("#yourchoice").html(randomPick);
           $("#mychoice").html($(this).data('name'));
-          $("#result").html(game.winner());
+          $("#result").html(game.result());
+          $("#winner").html('The winner is ' + game.winner().name);
 
           //$('body').hide().fadeIn(3000);
 
