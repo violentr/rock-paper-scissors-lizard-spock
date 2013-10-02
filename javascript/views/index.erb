@@ -23,9 +23,12 @@
       <img src="images/lizard.png" data-name="lizard">
       <img src="images/spock.png" data-name="spock">
     </div>
+    <h4>My Choice: </h4>
+    <h3 id="mychoice"></h3>
+    <h3 id="yourchoice"></h3>
     <h3 id="result"></h3>
 
-    <script src='http://code.jquery.com/jquery-2.0.3.js'></script>
+    <script type="text/javascript" src='http://code.jquery.com/jquery-2.0.3.js'></script>
     <script src='js/RockPaperScissors.js'></script>
     <script>
       $(document).ready(function() {
@@ -33,13 +36,24 @@
         var player2 = new Player();
         var game = new Game(player1, player2);
 
+        $(document).ready(function(){
+        $('.choices img').mouseenter(function(){
+        $('.choices img').fadeTo('slow',1);
+         });
+        });
+
         $( "#helloBtn" ).click(function() {
-          alert( "Hello." );
+          alert( "Welcome to a game" );
         });
         $('.choices img').click(function() {
-          player1.picks($(this).data('name'));
-          player2.picks(player2.randomPick());
+          var randomPick = player2.randomPick();
+          
 
+          player1.picks($(this).data('name'));
+          player2.picks(randomPick);
+
+          $("#yourchoice").html(randomPick);
+          $("#mychoice").html($(this).data('name'));
           $("#result").html(game.winner());
 
           //$('body').hide().fadeIn(3000);
