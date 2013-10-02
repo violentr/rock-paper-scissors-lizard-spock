@@ -33,7 +33,7 @@ Player.prototype.picks = function(playerPick) {
 Player.prototype.randomPick =function(){
   var randomNumber = Math.floor((Math.random()*5));
   var participants=['rock','paper','scissors','lizard','spock'];
-  return participants(randomNumber);
+  return participants[randomNumber];
 }
 
 function Game(player1, player2) {
@@ -50,15 +50,15 @@ function Game(player1, player2) {
 //   if(p2Wins) return p2Wins;
   
 //   return 'Draw';
-//}
+// }
 
 Game.prototype.winner = function() {
   var p1Wins = this.player1.pick.beats(this.player2.pick);
   var p2Wins = this.player2.pick.beats(this.player1.pick);
 
   // console.log(p1Wins || p2Wins || 'draw');
-  if(p1Wins) return this.player1;
-  if(p2Wins) return this.player2;
+  if(p1Wins) return p1Wins;
+  if(p2Wins) return p2Wins;
   
   return 'Draw';
 }
